@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://metnias.github.io/sitemap.xml
