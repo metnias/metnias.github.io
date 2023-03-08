@@ -3,26 +3,28 @@ layout:     post
 title:      "Starting This Blog"
 date:       2023-03-08 20:53:00 +0900
 summary:    Short writing to mark this blog's beginning.
-categories: jekyll
+categories: problem-solving
 thumbnail: 
 tags:
- - jekyll
+ - problem-solving
 ---
 
 
 Okay, so let's start this thing.
 
-I'll keep those posts from the template for now to check them time to time.
+I'll keep those posts from the template temporarily to check them from time to time.
 
-So, coding! I begun solving Baekjoon with `C++17`.
-`C11` is also a thing but I find that pure C language has very limited usage, unlike C++ in Unreal.
+So, coding! I began solving Baekjoon with `C++17`.
+`C11` is also a thing but I find that pure C language has very limited usage, unlike `C++` in Unreal.
+
+Yeah, I'll probably just use `C#` and `C++` for problem-solving in the following days.
 
 To test this website's code display capability, let's show all three of them.
 
 # 6558 on C#
 
 Baekjoon [6558][B6558] is about (dis)proving Goldbach's conjecture.
-Input is even numbers between 6 and 1000000, and there will be multiple cases (less than 100000) terminated by zero.
+Input is multiple even numbers between 6 and 1000000, and there will be numerous cases (less than 100000) terminated by zero.
 
 ```csharp
 int X = 1000001, i = 2, j; var B = new bool[X];
@@ -36,7 +38,7 @@ if (j < 6) { R.Close(); W.Close(); return; }
 for (i = 0; ; i++) if (S.Contains(j - L[i])) { W.WriteLine($"{j} = {L[i]} + {j - L[i]}"); goto L; }
 ```
 
-So I calcuated all prime numbers under that max limit beforehand using the Sieve of Eratosthenes,
+So I pre-calculated all prime numbers under that max limit beforehand using the Sieve of Eratosthenes,
 and store them in List (to use index) and HashSet (to use Contains with O(1)).
 
 And for each input, I searched the minimum prime number that satisfies the condition.
@@ -46,8 +48,8 @@ And for each input, I searched the minimum prime number that satisfies the condi
 
 Baekjoon [1152][B1152] is to count the number of words in the string (max length 1000000).
 
-The input is separated by spaces, which never appears multiple times in a row.
-However, it can appear on front or on back, so just counting the number of spaces will require two edge cases handling.
+The input is separated by spaces, which never appear multiple times in a row.
+However, it can appear on the front or the back, so just counting the number of spaces will require two edge cases handling.
 
 ```c
 #include <stdio.h>
@@ -67,7 +69,7 @@ int main() {
 
 I picked this one to see how `C` handles `string` (or how it does not) and how the `for` loop works for C.
 
-Well, `C` and `C++`'s `for` are exactly the same as `C#`'s one, thank you very much.
+Well, `C` and `C++`'s `for` are the same as `C#`'s, thank you very much.
 
 Anyhow, the way I did it was, if a word starts, tick the number of words for 1st letter of the word.
 So this covers both edge cases, and it can even handle multiple blank spaces.
@@ -97,7 +99,7 @@ int main() {
 }
 ```
 
-Oh, this gives me a good opportunity to test table function of this blog as well!
+Oh, this gives me a good opportunity to test the table function of this blog as well!
 
 |  A+ | A0  | B+  | B0  | C+  | C0  | D+  | D0  | F   |
 |:---:|-----|-----|-----|-----|-----|-----|-----|-----|
@@ -106,7 +108,7 @@ Oh, this gives me a good opportunity to test table function of this blog as well
 So that's how we get the grade, and I just subtracted the ASCII from `'E'` for the base,
 and added `0.5` when the second letter is '+'.
 
-Also there's an edge case that when the grade is `'P'`, that line should be ignored.
+Also, there's an edge case that when the grade is `'P'`, that line should be ignored.
 
 # Conclusion
 
