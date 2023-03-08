@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\css",
+    "\\favicons",
+    "\\_layouts",
+    "\\_posts"
   ],
-  "SelectedNode": "\\index.html",
+  "SelectedNode": "\\_posts\\2023-03-08-starting-this-blog.md",
   "PreviewInSolutionExplorer": false
 }
