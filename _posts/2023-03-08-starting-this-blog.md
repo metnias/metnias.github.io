@@ -3,13 +3,13 @@ layout:     post
 title:      "Starting This Blog"
 date:       2023-03-08 20:53:00 +0900
 summary:    Short writing to mark this blog's beginning.
-categories: problem-solving blogging
+categories: blog
 thumbnail: 
 tags:
  - csharp
  - cpp
  - c
- - problem-solving
+ - ps
 ---
 
 

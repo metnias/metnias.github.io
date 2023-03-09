@@ -3,7 +3,7 @@ layout:     post
 title:      "Not So Private"
 date:       2023-03-09 12:48:00 +0900
 summary:    Rambling about how useless access modifiers are
-categories: blogging
+categories: blog
 thumbnail: 
 tags:
  - access-modifiers
