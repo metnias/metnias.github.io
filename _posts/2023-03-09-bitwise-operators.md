@@ -6,6 +6,8 @@ summary:    Notes about bitwise operators
 categories: study
 thumbnail: 
 tags:
+ - csharp
+ - cpp
  - bitwise-operators
  - bitmask
 ---

@@ -3,11 +3,12 @@ layout:     post
 title:      "Not So Private"
 date:       2023-03-09 12:48:00 +0900
 summary:    Rambling about how useless access modifiers are
-categories: modding
+categories: blogging
 thumbnail: 
 tags:
  - access-modifiers
  - modding
+ - csharp
 ---
 
 As a modder, I have to decompile other person's code, analyse their algorithms,
