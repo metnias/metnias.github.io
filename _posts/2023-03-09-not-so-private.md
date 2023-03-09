@@ -80,7 +80,7 @@ namespace System.Runtime.CompilerServices
 }
 ``` 
 
-* Note: I do not understand any of this code; this individual hooked System.Enum to make it tangible and I do not possess that much power.
+* Note: I do not understand any of this code; they hooked System.Enum to make it tangible and I do not possess that much power.
 
 As long as a cs file containing this is included in the assembly,
 this assmebly can access everything in `Assembly-CSharp` (Unity game's compiled codes)
