@@ -24,6 +24,8 @@ Thank you very much.
 If you had ever tried problem solving, you'd know they are important.
 
 At very least, Queue for BFS.
+I've once used Stack with struct for implementing undo function too.
+
 
 # Stack
 
