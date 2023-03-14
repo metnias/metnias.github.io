@@ -30,13 +30,13 @@ int* pArr;
 do pArr = (int*)malloc(sizeof(int) * LEN); while (pArr == NULL);
 pArr[0] = 10;
 *(pArr + 1) = 20;
-if (pArr != NULL) {	free(pArr);	pArr = NULL; } // freeing memory
+if (pArr != NULL) { free(pArr); pArr = NULL; } // freeing memory
 ```
 
 Hmmmm...?
 
 I found something intriguing but
-I'll talk more about that in the following post.
+I'll talk more about that in the [following post][NextPost].
 
 
 # Vector
@@ -60,9 +60,9 @@ Unity's `Vector2D` which is a two `float` container)
 ```c
 #define SAFE_FREE(p)\
 if (p) {\
-		free(p);\
-		(p) = NULL;\
-	} // \ in the end of line joins the next line
+        free(p);\
+        (p) = NULL;\
+    } // \ in the end of line joins the next line
 ```
 
 I don't think the instructor taught us the difference
@@ -100,8 +100,8 @@ and `##` (concat).
 
 ```c
 void CreateArray(void** const _pArr, const size_t _size) {
-	SAFE_FREE(*_pArr);
-	do *_pArr = malloc(_size); while (*_pArr == NULL);
+    SAFE_FREE(*_pArr);
+    do *_pArr = malloc(_size); while (*_pArr == NULL);
 }
 ```
 
@@ -116,12 +116,12 @@ in the sense of programmers' productivity, neigh.
 
 ```c
 void ExpandArray(int** _pArr, int* const _pArrLen) {
-	int* newArr = NULL;
-	CreateArray(&newArr, *_pArrLen * sizeof(int) * 2);
-	for (int i = 0; i < *_pArrLen; ++i) newArr[i] = (*_pArr)[i]; // clone
-	*_pArrLen *= 2;
-	SAFE_FREE(*_pArr);
-	*_pArr = newArr;
+    int* newArr = NULL;
+    CreateArray(&newArr, *_pArrLen * sizeof(int) * 2);
+    for (int i = 0; i < *_pArrLen; ++i) newArr[i] = (*_pArr)[i]; // clone
+    *_pArrLen *= 2;
+    SAFE_FREE(*_pArr);
+    *_pArr = newArr;
 }
 ```
 
@@ -138,9 +138,9 @@ and trying to add new item to where it's not supposed to.
 
 ```c
 void Add(int** _pArr, int* const _pArrLen, int* const _pIndex, const int _data) {
-	if (*_pIndex >= *_pArrLen) ExpandArray(_pArr, _pArrLen);
-	(*_pArr)[*_pIndex] = _data;
-	++(*_pIndex);
+    if (*_pIndex >= *_pArrLen) ExpandArray(_pArr, _pArrLen);
+    (*_pArr)[*_pIndex] = _data;
+    ++(*_pIndex);
 }
 ```
 
@@ -154,8 +154,8 @@ You'd know how they work by looking at the code.
 
 ```c
 void Print(const int* _pArr, const int _index) {
-	for (int i = 0; i < _index; ++i) printf("%d - ", _pArr[i]);
-	printf("(%d)\n", _index);
+    for (int i = 0; i < _index; ++i) printf("%d - ", _pArr[i]);
+    printf("(%d)\n", _index);
 }
 ```
 
@@ -165,3 +165,4 @@ Also this.
 [BOJ17103]: https://www.acmicpc.net/problem/17103
 [BOJ17103Solution]: https://www.acmicpc.net/source/57272891
 [Macro]: https://learn.microsoft.com/en-us/cpp/preprocessor/macros-c-cpp?view=msvc-170
+[NextPost]: /blog/2023/03/14/memory-cheese/

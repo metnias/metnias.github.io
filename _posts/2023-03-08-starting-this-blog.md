@@ -58,15 +58,15 @@ However, it can appear on the front or the back, so just counting the number of 
 #include <stdio.h>
 #include <string.h>
 int main() {
-	int i = 0, c = 0, n = 0;
-	char S[1000001];
-	gets(S);
-	for (; i < strlen(S); i++) {
-		if (S[i] == ' ') c = 0;
-		else c++;
-		if (c == 1) n++;
-	}
-	printf("%d", n);
+    int i = 0, c = 0, n = 0;
+    char S[1000001];
+    gets(S);
+    for (; i < strlen(S); i++) {
+        if (S[i] == ' ') c = 0;
+        else c++;
+        if (c == 1) n++;
+    }
+    printf("%d", n);
 }
 ```
 
@@ -87,18 +87,18 @@ Input is 20 rows in `SubjectName Credit Grade` format.
 ```cpp
 #include <iostream>
 int main() {
-	char S[51], G[3];
-	int i = 0;
-	double m = 0, s = 0, g, c;
-	for (; i < 20; i++) {
-		std::cin >> S >> g >> G;
-		if (G[0] == 'P') continue;
-		c = 'E' - G[0];
-		if (c < 0) c = 0;
-		else if (G[1] == '+') c += 0.5;
-		s += g; m += g * c;
-	}
-	std::cout << m / s;
+    char S[51], G[3];
+    int i = 0;
+    double m = 0, s = 0, g, c;
+    for (; i < 20; i++) {
+        std::cin >> S >> g >> G;
+        if (G[0] == 'P') continue;
+        c = 'E' - G[0];
+        if (c < 0) c = 0;
+        else if (G[1] == '+') c += 0.5;
+        s += g; m += g * c;
+    }
+    std::cout << m / s;
 }
 ```
 
