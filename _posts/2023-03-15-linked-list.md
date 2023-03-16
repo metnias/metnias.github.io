@@ -2,7 +2,7 @@
 layout:     post
 title:      "Linked List"
 date:       2023-03-15 14:21 +0900
-summary:    Notes about Memory Allocate and Vector
+summary:    Notes about Structure and Linked List
 categories: study
 thumbnail: 
 tags:
