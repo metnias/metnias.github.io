@@ -29,8 +29,8 @@ implementing Linked List.
 
 ```c
 struct SExample {
-	int i;		// Structure Member Variables
-	int ii;
+    int i;        // Structure Member Variables
+    int ii;
 };
 ```
 
@@ -43,9 +43,9 @@ is 8B.
 
 ```c
 struct SExample {
-	int i; // 4B
-	char c; // 1B
-	char cc; // 1B
+    int i; // 4B
+    char c; // 1B
+    char cc; // 1B
 }; // : 8B
 ```
 
@@ -54,9 +54,9 @@ So with `char` (1B), 2B is wasted in this example.
 
 ```c
 struct SExample {
-	char c; // 4B (1B)
-	int i; // 4B
-	char cc; // 4B
+    char c; // 4B (1B)
+    int i; // 4B
+    char cc; // 4B
 }; // : 12B
 ```
 
@@ -67,10 +67,10 @@ the largest data in the structure.
 
 ```c
 struct SExample {
-	int i; // 8B (4B)
-	double d; // 8B
-	char c; // 8B (1B
-	char cc; // +1B)
+    int i; // 8B (4B)
+    double d; // 8B
+    char c; // 8B (1B
+    char cc; // +1B)
 }; // : 24B
 ```
 
@@ -78,11 +78,11 @@ In this example with `double`, padding is based around 8B.
 
 ```c
 struct SExample {
-	int i;
-	double d;
-	struct SLarge str; // 24B
-	char c;
-	char cc;
+    int i;
+    double d;
+    struct SLarge str; // 24B
+    char c;
+    char cc;
 }; // : 48B
 ```
 
@@ -93,8 +93,8 @@ Hmmmm, this example ignores the order, though.
 
 ```c
 struct _SNode {
-	int data;
-	struct _SNode* pNext;
+    int data;
+    struct _SNode* pNext;
 };
 typedef struct _SNode SNode;
 ```
@@ -104,8 +104,8 @@ we can use `typedef`.
 
 ```c
 typedef struct _SNode {
-	int data;
-	struct _SNode* pNext;
+    int data;
+    struct _SNode* pNext;
 } SNode;
 ```
 
@@ -121,14 +121,14 @@ so let's go back to why we're making this SNode.
 
 ```c
 void main() {
-	SNode* pHead = NULL;
+    SNode* pHead = NULL;
 
-	for (int i = 0; i < 10; ++i) {
-		AddNode(&pHead, i + 1);
-		Print(pHead);
-	}
+    for (int i = 0; i < 10; ++i) {
+        AddNode(&pHead, i + 1);
+        Print(pHead);
+    }
 
-	RemoveAll(&pHead);
+    RemoveAll(&pHead);
 }
 ```
 
@@ -140,19 +140,19 @@ so that the length of this list equals the length of actual data.
 
 ```c
 void AddNode(SNode** const _pHead, int const _data) {
-	SNode* node;
-	if (*_pHead == NULL) {
-		SURE_MALLOC(SNode, *_pHead);
-		node = *_pHead;
-	}
-	else {
-		node = *_pHead;
-		while (node->pNext) node = (*node).pNext;
-		SURE_MALLOC(SNode, node->pNext);
-		node = (*node).pNext;
-	}
-	node->data = _data;
-	node->pNext = NULL;
+    SNode* node;
+    if (*_pHead == NULL) {
+        SURE_MALLOC(SNode, *_pHead);
+        node = *_pHead;
+    }
+    else {
+        node = *_pHead;
+        while (node->pNext) node = (*node).pNext;
+        SURE_MALLOC(SNode, node->pNext);
+        node = (*node).pNext;
+    }
+    node->data = _data;
+    node->pNext = NULL;
 }
 ```
 
@@ -172,15 +172,15 @@ Originally I used iterator for this:
 
 ```c
 void RemoveAll(SNode** const _pHead) {
-	if (*_pHead == NULL) return;
-	SNode* node = *_pHead;
-	SNode* lastNode = node;
-	while (node->pNext) {
-		lastNode = node;
-		node = (*node).pNext;
-		SAFE_FREE(lastNode);
-	}
-	SAFE_FREE(node);
+    if (*_pHead == NULL) return;
+    SNode* node = *_pHead;
+    SNode* lastNode = node;
+    while (node->pNext) {
+        lastNode = node;
+        node = (*node).pNext;
+        SAFE_FREE(lastNode);
+    }
+    SAFE_FREE(node);
 } // This removes nodes from front to end
 ```
 
@@ -188,9 +188,9 @@ But, yeah, you can use recursive function which is way simpler.
 
 ```c
 void RemoveAll(SNode** const _pHead) {
-	if (*_pHead == NULL) return;
-	if ((*_pHead)->pNext) RemoveAll(&((*_pHead)->pNext));
-	SAFE_FREE(*_pHead);
+    if (*_pHead == NULL) return;
+    if ((*_pHead)->pNext) RemoveAll(&((*_pHead)->pNext));
+    SAFE_FREE(*_pHead);
 } // This removes nodes from end to front
 ```
 
@@ -199,15 +199,15 @@ void RemoveAll(SNode** const _pHead) {
 
 ```c
 void Print(SNode* const _pHead) {
-	if (_pHead == NULL) return;
-	SNode* node = _pHead;
-	int count = 0;
-	while (1) {
-		printf("%d - ", node->data); ++count;
-		if (node->pNext == NULL) break;
-		node = node->pNext;
-	}
-	printf("(%d)\n", count);
+    if (_pHead == NULL) return;
+    SNode* node = _pHead;
+    int count = 0;
+    while (1) {
+        printf("%d - ", node->data); ++count;
+        if (node->pNext == NULL) break;
+        node = node->pNext;
+    }
+    printf("(%d)\n", count);
 }
 ```
 

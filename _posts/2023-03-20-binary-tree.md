@@ -22,9 +22,9 @@ Let's start with preparation.
 #define SAFE_FREE(pointer) if (pointer) { free(pointer); (pointer) = NULL; }
 
 typedef struct _SNode {
-	int data;
-	struct _SNode* pLeft;
-	struct _SNode* pRight;
+    int data;
+    struct _SNode* pLeft;
+    struct _SNode* pRight;
 } SNode;
 ```
 
@@ -34,12 +34,12 @@ Creating node itself is the same as before.
 
 ```c
 SNode* CreateNode(int const _data) {
-	SNode* node;
-	SURE_MALLOC(SNode, node);
-	node->data = _data;
-	node->pLeft = NULL;
-	node->pRight = NULL;
-	return node;
+    SNode* node;
+    SURE_MALLOC(SNode, node);
+    node->data = _data;
+    node->pLeft = NULL;
+    node->pRight = NULL;
+    return node;
 }
 ```
 
@@ -47,9 +47,9 @@ However, now I want to append this node to its head.
 
 ```
 SNode* AppendData(SNode* const _head, int const _data) {
-	SNode* node = CreateNode(_data);
-	AppendNode(_head, node);
-	return node;
+    SNode* node = CreateNode(_data);
+    AppendNode(_head, node);
+    return node;
 }
 ```
 
@@ -60,14 +60,14 @@ I have separated `AppendNode` function for later.
 
 ```c
 void AppendNode(SNode* const _head, SNode* _node) {
-	if (_head->data < _node->data) {
-		if (_head->pRight == NULL) _head->pRight = _node;
-		else AppendNode(_head->pRight, _node);
-	}
-	else {
-		if (_head->pLeft == NULL) _head->pLeft = _node;
-		else AppendNode(_head->pLeft, _node);
-	}
+    if (_head->data < _node->data) {
+        if (_head->pRight == NULL) _head->pRight = _node;
+        else AppendNode(_head->pRight, _node);
+    }
+    else {
+        if (_head->pLeft == NULL) _head->pLeft = _node;
+        else AppendNode(_head->pLeft, _node);
+    }
 }
 ```
 
@@ -84,13 +84,13 @@ a *sorted* array.
 
 ```c
 void BuildSubTree(SNode* const _head, int* const _pArr, int const _leftIdx, int const _rightIdx) {
-	if (_head == NULL) return;
-	if (_leftIdx > _rightIdx) return;
-	int centerIdx = (_leftIdx + _rightIdx) >> 1;
-	SNode* node = AppendNode(_head, _pArr[centerIdx]);
-	if (_leftIdx == _rightIdx) return;
-	BuildSubTree(node, _pArr, _leftIdx, centerIdx - 1);
-	BuildSubTree(node, _pArr, centerIdx + 1, _rightIdx);
+    if (_head == NULL) return;
+    if (_leftIdx > _rightIdx) return;
+    int centerIdx = (_leftIdx + _rightIdx) >> 1;
+    SNode* node = AppendNode(_head, _pArr[centerIdx]);
+    if (_leftIdx == _rightIdx) return;
+    BuildSubTree(node, _pArr, _leftIdx, centerIdx - 1);
+    BuildSubTree(node, _pArr, centerIdx + 1, _rightIdx);
 }
 ```
 
@@ -103,11 +103,11 @@ The implementation reminds me of Binary Search, which makes sense.
 
 ```
 void BuildTree(SNode** const _pHead, int* const _pArr, int const _len) {
-	if (*_pHead != NULL) DestroyAll(_pHead);
-	int centerIdx = _len >> 1;
-	*_pHead = CreateNode(_pArr[centerIdx]);
-	BuildSubTree(*_pHead, _pArr, 0, centerIdx - 1);
-	BuildSubTree(*_pHead, _pArr, centerIdx + 1, _len - 1);
+    if (*_pHead != NULL) DestroyAll(_pHead);
+    int centerIdx = _len >> 1;
+    *_pHead = CreateNode(_pArr[centerIdx]);
+    BuildSubTree(*_pHead, _pArr, 0, centerIdx - 1);
+    BuildSubTree(*_pHead, _pArr, centerIdx + 1, _len - 1);
 }
 ```
 
@@ -119,8 +119,8 @@ with some handlers for the head.
 
 ```
 void PrintAll(SNode* const _head) {
-	if (_head == NULL) { printf("(0)\n"); return; }
-	printf("(%d)\n", PrintSub(_head));
+    if (_head == NULL) { printf("(0)\n"); return; }
+    printf("(%d)\n", PrintSub(_head));
 }
 ```
 
@@ -130,13 +130,13 @@ Here's the function to call.
 
 ```c
 int PrintSub(SNode* const _node) {
-	if (_node == NULL) return 0;
-	int count = 1;
-	// Inorder Traversal
-	count += PrintSub(_node->pLeft);
-	printf("%d - ", _node->data);
-	count += PrintSub(_node->pRight);
-	return count;
+    if (_node == NULL) return 0;
+    int count = 1;
+    // Inorder Traversal
+    count += PrintSub(_node->pLeft);
+    printf("%d - ", _node->data);
+    count += PrintSub(_node->pRight);
+    return count;
 }
 ```
 
@@ -166,19 +166,20 @@ by node order, but this one requires using Queue.
 
 ```c
 int PrintWithLevelSub(SNode* const _node, int const _targetLevel, int const _curLevel) {
-	if (_node == NULL) return 0;
-	if (_targetLevel == _curLevel) {
-		printf("%d - ", _node->data);
-		return 1;
-	}
-	int count = 0;
-	count += PrintWithLevelSub(_node->pLeft, _targetLevel, _curLevel + 1);
-	count += PrintWithLevelSub(_node->pRight, _targetLevel, _curLevel + 1);
+    if (_node == NULL) return 0;
+    if (_targetLevel == _curLevel) {
+        printf("%d - ", _node->data);
+        return 1;
+    }
+    int count = 0;
+    count += PrintWithLevelSub(_node->pLeft, _targetLevel, _curLevel + 1);
+    count += PrintWithLevelSub(_node->pRight, _targetLevel, _curLevel + 1);
+    return count;
 }
 
 void PrintWithLevel(SNode* const _head, int const _level) {
-	if (_head == NULL) { printf("(0)\n"); return; }
-	printf("(%d)\n", PrintWithLevelSub(_head, _level, 0));
+    if (_head == NULL) { printf("(0)\n"); return; }
+    printf("(%d)\n", PrintWithLevelSub(_head, _level, 0));
 }
 ```
 
@@ -193,10 +194,10 @@ Actually, this *is* backtracking.
 
 ```c
 void RemoveAll(SNode** const _pHead) {
-	if (*_pHead == NULL) return;
-	RemoveAll(&((*_pHead)->pLeft));
-	RemoveAll(&((*_pHead)->pRight));
-	SAFE_FREE(*_pHead);
+    if (*_pHead == NULL) return;
+    RemoveAll(&((*_pHead)->pLeft));
+    RemoveAll(&((*_pHead)->pRight));
+    SAFE_FREE(*_pHead);
 }
 ```
 
@@ -207,11 +208,11 @@ This one is straight-forward.
 
 ```c
 int Count(SNode* const _head) {
-	if (_head == NULL) return 0;
-	int count = 1;
-	count += Count(_head->pLeft);
-	count += Count(_head->pRight);
-	return count;
+    if (_head == NULL) return 0;
+    int count = 1;
+    count += Count(_head->pLeft);
+    count += Count(_head->pRight);
+    return count;
 }
 ```
 
@@ -220,18 +221,18 @@ so I just had to copy that and removed redundant codes.
 
 ```c
 int SubDepth(SNode* const _node, int const _depth) {
-	if (_node == NULL) return 0;
-	int d = _depth, e;
-	e = SubDepth(_node->pLeft, _depth + 1);
-	if (d < e) d = e;
-	e = SubDepth(_node->pRight, _depth + 1);
-	if (d < e) d = e;
-	return d;
+    if (_node == NULL) return 0;
+    int d = _depth, e;
+    e = SubDepth(_node->pLeft, _depth + 1);
+    if (d < e) d = e;
+    e = SubDepth(_node->pRight, _depth + 1);
+    if (d < e) d = e;
+    return d;
 }
 
 int Depth(SNode* const _head) {
-	if (_head == NULL) return 0;
-	return SubDepth(_head, 0);
+    if (_head == NULL) return 0;
+    return SubDepth(_head, 0);
 }
 ```
 
@@ -247,10 +248,10 @@ This will come handy later as well.
 
 ```c
 SNode* GetNode(SNode* const _head, int const _data) {
-	if (_head == NULL) return NULL;
-	if (_head->data == _data) return _head;
-	if (_head->data > _data) return GetNode(_head->pLeft, _data);
-	return GetNode(_head->pRight, _data);
+    if (_head == NULL) return NULL;
+    if (_head->data == _data) return _head;
+    if (_head->data > _data) return GetNode(_head->pLeft, _data);
+    return GetNode(_head->pRight, _data);
 }
 ```
 
@@ -265,10 +266,10 @@ The big one.
 
 ```c
 void Remove(SNode** const _pHead, int const _data) {
-	if (*_pHead == NULL) return;
-	if ((*_pHead)->data == _data) { RemoveNode(_pHead);	return; }
-	if ((*_pHead)->data > _data) Remove(&((*_pHead)->pLeft), _data);
-	else Remove(&((*_pHead)->pRight), _data);
+    if (*_pHead == NULL) return;
+    if ((*_pHead)->data == _data) { RemoveNode(_pHead);    return; }
+    if ((*_pHead)->data > _data) Remove(&((*_pHead)->pLeft), _data);
+    else Remove(&((*_pHead)->pRight), _data);
 }
 ```
 
@@ -281,20 +282,20 @@ anyhow,
 
 ```c
 void RemoveNode(SNode** const _pNode) {
-	if (*_pNode == NULL) return;
-	SNode* nodeTop; SNode* nodeBtm;
-	if (Depth((*_pNode)->pLeft) > Depth((*_pNode)->pRight)) {
-		nodeTop = (*_pNode)->pLeft;
-		nodeBtm = (*_pNode)->pRight;
-	}
-	else {
-		nodeTop = (*_pNode)->pRight;
-		nodeBtm = (*_pNode)->pLeft;
-	}
-	if (nodeTop == NULL) { nodeTop = nodeBtm; nodeBtm = NULL; }
-	SAFE_FREE(*_pNode);
-	*_pNode = nodeTop;
-	if (*_pNode != NULL && nodeBtm != NULL) AppendNode(*_pNode, nodeBtm);
+    if (*_pNode == NULL) return;
+    SNode* nodeTop; SNode* nodeBtm;
+    if (Depth((*_pNode)->pLeft) > Depth((*_pNode)->pRight)) {
+        nodeTop = (*_pNode)->pLeft;
+        nodeBtm = (*_pNode)->pRight;
+    }
+    else {
+        nodeTop = (*_pNode)->pRight;
+        nodeBtm = (*_pNode)->pLeft;
+    }
+    if (nodeTop == NULL) { nodeTop = nodeBtm; nodeBtm = NULL; }
+    SAFE_FREE(*_pNode);
+    *_pNode = nodeTop;
+    if (*_pNode != NULL && nodeBtm != NULL) AppendNode(*_pNode, nodeBtm);
 }
 ```
 

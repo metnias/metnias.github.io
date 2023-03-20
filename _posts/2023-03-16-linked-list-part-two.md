@@ -21,26 +21,26 @@ now we insert and remove individual nodes.
 
 ```c
 char TryGetNodeAt(SNode* const _pHead, int const _index, SNode** pNode) {
-	if (_pHead == NULL) return 0;
-	*pNode = _pHead;
-	for (int i = 0; i < _index; ++i) {
-		*pNode = (*pNode)->pNext;
-		if (*pNode == NULL) return 0;
-	}
-	return 1;
+    if (_pHead == NULL) return 0;
+    *pNode = _pHead;
+    for (int i = 0; i < _index; ++i) {
+        *pNode = (*pNode)->pNext;
+        if (*pNode == NULL) return 0;
+    }
+    return 1;
 }
 ```
 
 ```c
 char TryGetNode(SNode* const _pHead, int const _data, SNode** pNode) {
-	if (_pHead == NULL) return 0;
-	*pNode = _pHead;
-	while (1) {
-		if ((*pNode)->data == _data) break;
-		*pNode = (*pNode)->pNext;
-		if (*pNode == NULL) return 0;
-	}
-	return 1;
+    if (_pHead == NULL) return 0;
+    *pNode = _pHead;
+    while (1) {
+        if ((*pNode)->data == _data) break;
+        *pNode = (*pNode)->pNext;
+        if (*pNode == NULL) return 0;
+    }
+    return 1;
 }
 ```
 
@@ -52,13 +52,13 @@ O(n).
 
 ```c
 void InsertNodeAfter(SNode* const _pNode, int const _data) {
-	if (_pNode == NULL) return;
-	SNode* node;
-	SURE_MALLOC(SNode, node);
-	node->data = _data;
-	SNode* pNext = _pNode->pNext;
-	_pNode->pNext = node; // Insert
-	node->pNext = pNext;
+    if (_pNode == NULL) return;
+    SNode* node;
+    SURE_MALLOC(SNode, node);
+    node->data = _data;
+    SNode* pNext = _pNode->pNext;
+    _pNode->pNext = node; // Insert
+    node->pNext = pNext;
 }
 ```
 
@@ -71,12 +71,12 @@ Now we're getting somewhere.
 
 ```c
 void RemoveNodeAfter(SNode* const _pPrev) {
-	if (_pPrev == NULL) return;
-	SNode* pCur;
-	if (_pPrev->pNext) pCur = _pPrev->pNext;
-	else return; // no next
-	_pPrev->pNext = pCur->pNext; // Pull
-	SAFE_FREE(pCur);
+    if (_pPrev == NULL) return;
+    SNode* pCur;
+    if (_pPrev->pNext) pCur = _pPrev->pNext;
+    else return; // no next
+    _pPrev->pNext = pCur->pNext; // Pull
+    SAFE_FREE(pCur);
 }
 ```
 
@@ -91,15 +91,15 @@ find that, meaning it's O(n).
 
 ```c
 void RemoveNode(SNode** _pHead, SNode** const _pNode) {
-	if (_pHead == NULL || _pNode == NULL) return;
-	if (_pHead == _pNode) { RemoveNodeAt(_pHead, 0); return; }
-	SNode* pPrev = *_pHead;
-	while (1) {
-		if (pPrev->pNext == NULL) return;
-		if (pPrev->pNext == *_pNode) break;
-		pPrev = pPrev->pNext;
-	}
-	RemoveNodeAfter(pPrev);
+    if (_pHead == NULL || _pNode == NULL) return;
+    if (_pHead == _pNode) { RemoveNodeAt(_pHead, 0); return; }
+    SNode* pPrev = *_pHead;
+    while (1) {
+        if (pPrev->pNext == NULL) return;
+        if (pPrev->pNext == *_pNode) break;
+        pPrev = pPrev->pNext;
+    }
+    RemoveNodeAfter(pPrev);
 }
 ```
 
