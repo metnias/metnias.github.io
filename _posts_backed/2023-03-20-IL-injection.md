@@ -54,18 +54,25 @@ However, Intermediate Language is independent from CPU or OS.
 This assembly-esque code runs over a virtual machine called
 **Common Language Runtime(CLR)**.
 
-(By the way, you *can* compile C++ with .NET C++ to compile into
+(Apparently, you *can* compile C++ with .NET C++ to compile into
 IL code)
 
-When you use [dnSpy][dnSpy], you can decompile .NET and Unity
+When you use [dnSpy][dnSpy GitHub], you can decompile .NET and Unity
 assemblies.
 (You can also edit this with dnSpy directly but
 that is years old modding meta)
 
+But If you're doing IL hooking, you really should get [ILSpy][ILSpy GitHub].
+It has IL with C# mode, which is not perfect, but saves the amount of time you decoding IL code significantly.
+
+
+# How IL Injection works
 
 
 
 
 
 
-[dnSpy]: https://github.com/dnSpy/dnSpy
+
+[dnSpy GitHub]: https://github.com/dnSpy/dnSpy
+[ILSpy GitHub]: https://github.com/icsharpcode/ILSpy
