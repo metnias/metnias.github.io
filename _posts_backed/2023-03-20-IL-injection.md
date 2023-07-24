@@ -68,7 +68,13 @@ It has IL with C# mode, which is not perfect, but saves the amount of time you d
 
 # How IL Injection works
 
+Since the original C# source code is compiled to IL code, you can add extra lines in between original IL code to inject your own instruction.
 
+If you want to remove some of the lines, you add a Label and goto instruction to skip those.
+
+IL code is just raw list of instructions, so it is very flexible if you know what you are doing.
+For instance, you can add additional check inside a pre-existing if statement's condition.
+Or jumping in and out of existing loop.
 
 
 
